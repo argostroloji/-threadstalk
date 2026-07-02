@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-ink text-zinc-100 antialiased;
+  background-image:
+    radial-gradient(60rem 40rem at 80% -10%, rgba(192, 132, 252, 0.14), transparent),
+    radial-gradient(50rem 35rem at -10% 110%, rgba(244, 114, 182, 0.1), transparent);
+  background-attachment: fixed;
+}
+
+.card-gradient {
+  background:
+    radial-gradient(28rem 20rem at 85% 0%, rgba(192, 132, 252, 0.22), transparent),
+    radial-gradient(24rem 18rem at 0% 100%, rgba(244, 114, 182, 0.16), transparent),
+    #14141d;
+}
