@@ -77,9 +77,10 @@ async function askClaude(handle: string, postTexts: string[]): Promise<LlmVerdic
 
   try {
     const response = await client.messages.create({
-      model: "claude-sonnet-4-6",
+      // Haiku 4.5: bu eğlence görevine yeterli, test başına ~0,4 cent.
+      // Not: Haiku adaptive thinking desteklemez — thinking parametresi yok.
+      model: "claude-haiku-4-5",
       max_tokens: 1024,
-      thinking: { type: "adaptive" },
       system: SYSTEM_PROMPT,
       messages: [{ role: "user", content: userContent }],
     });

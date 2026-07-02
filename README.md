@@ -8,8 +8,9 @@ Threads için viral analiz aracı (site dili: İngilizce) — iki özellik:
    gösterir (merkez: kullanıcı, iç halka 8, dış halka 16). Arka plan rengi
    seçilebilir. Uydurma isim göstermez; kartta zorunlu dürüstlük ibaresi vardır.
 2. **Threads Personality Test** (`/personality/[handle]`) — son paylaşımları
-   Claude'a (model: `claude-sonnet-4-6`) gönderir, 10 eğlenceli İngilizce
-   arketipten birini + açıklama + 3 parafraze "kanıt" döner.
+   Claude'a (model: `claude-haiku-4-5`, test başına ~0,4 cent) gönderir;
+   postların dilinde 10 eğlenceli arketipten birini + açıklama + 3 parafraze
+   "kanıt" döner.
 
 ## Stack
 
