@@ -12,11 +12,10 @@ export default function AboutPage() {
     <article className="mx-auto max-w-2xl space-y-6 text-sm leading-relaxed text-zinc-300">
       <h1 className="text-3xl font-extrabold text-zinc-100">About</h1>
       <p>
-        ThreadStalk is a just-for-fun analytics tool for Threads users. It does
-        two things: it scores the accounts that engage with you the most based
-        on public interaction data (&quot;Who&apos;s Stalking You?&quot;), and
-        it has AI read your recent posts to assign you a playful personality
-        archetype.
+        ThreadStalk is a just-for-fun analytics tool for Threads users. It
+        scores the accounts that engage with you the most based on public
+        interaction data and draws them as your &quot;interaction
+        circle&quot; (&quot;Who&apos;s Stalking You?&quot;).
       </p>
       <h2 className="text-lg font-bold text-zinc-100">Our honesty principle</h2>
       <p>
@@ -38,10 +37,6 @@ export default function AboutPage() {
           last 30 days get a 1.5x weight.
         </li>
         <li>The top-scoring accounts appear in your circle.</li>
-        <li>
-          For the personality test, the text of your recent posts is sent to
-          Claude (Anthropic) and the result comes back as one of 10 archetypes.
-        </li>
       </ul>
       <p>
         Questions? Use the{" "}

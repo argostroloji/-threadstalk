@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
 import CardBrand from "@/components/CardBrand";
 import Circle from "@/components/Circle";
@@ -119,11 +118,6 @@ export default async function StalkersPage({
           shareText={`My Threads interaction circle 👀 Check yours:`}
           fileName={`threadstalk-${handle}`}
         />
-        <p className="text-center text-sm text-zinc-400">
-          <Link href={`/personality/${handle}`} className="text-hot underline">
-            🔮 See the personality test for @{handle} too
-          </Link>
-        </p>
       </div>
 
       <AdSlot slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_RESULT} />

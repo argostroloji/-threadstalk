@@ -30,10 +30,8 @@ export default function PrivacyPage() {
             For what purpose?
           </h2>
           <p>
-            The data is used solely to generate the result you requested (the
-            interaction score and the personality read). For the personality
-            test, the text of the posts is sent to our AI provider,
-            Anthropic&apos;s API, for analysis.
+            The data is used solely to generate the interaction circle you
+            requested. We do not sell it or use it for any other purpose.
           </p>
         </section>
         <section>

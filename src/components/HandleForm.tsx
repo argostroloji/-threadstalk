@@ -7,14 +7,12 @@ function normalize(raw: string): string {
   return raw.trim().replace(/^@/, "").toLowerCase();
 }
 
-export default function HandleForm({
-  defaultMode = "stalkers",
-}: {
-  defaultMode?: "stalkers" | "personality";
-}) {
+// Not: Kişilik testi şimdilik kapalı (talep gelince geri açılacak).
+// /personality/[handle] route'u ve lib'i yerinde duruyor; buraya bir mod
+// seçici geri eklemek yeterli.
+export default function HandleForm() {
   const router = useRouter();
   const [handle, setHandle] = useState("");
-  const [mode, setMode] = useState<"stalkers" | "personality">(defaultMode);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -27,36 +25,11 @@ export default function HandleForm({
     }
     setError(null);
     setLoading(true);
-    router.push(`/${mode}/${encodeURIComponent(h)}`);
+    router.push(`/stalkers/${encodeURIComponent(h)}`);
   }
 
   return (
     <form onSubmit={submit} className="w-full max-w-md space-y-4">
-      <div className="flex rounded-xl bg-panel p-1 text-sm">
-        <button
-          type="button"
-          onClick={() => setMode("stalkers")}
-          className={`flex-1 rounded-lg px-3 py-2 transition ${
-            mode === "stalkers"
-              ? "bg-neon/20 text-neon"
-              : "text-zinc-400 hover:text-zinc-200"
-          }`}
-        >
-          👀 My Stalkers
-        </button>
-        <button
-          type="button"
-          onClick={() => setMode("personality")}
-          className={`flex-1 rounded-lg px-3 py-2 transition ${
-            mode === "personality"
-              ? "bg-hot/20 text-hot"
-              : "text-zinc-400 hover:text-zinc-200"
-          }`}
-        >
-          🔮 Personality Test
-        </button>
-      </div>
-
       <div className="flex gap-2">
         <input
           value={handle}
@@ -72,7 +45,7 @@ export default function HandleForm({
           disabled={loading}
           className="rounded-xl bg-gradient-to-r from-neon to-hot px-5 py-3 font-semibold text-ink transition hover:opacity-90 disabled:opacity-50"
         >
-          {loading ? "..." : "Go"}
+          {loading ? "..." : "Generate"}
         </button>
       </div>
 

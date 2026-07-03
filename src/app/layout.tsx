@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s · ThreadStalk",
   },
   description:
-    "Enter your Threads username and get your interaction circle and AI personality — as a shareable card.",
+    "Enter your Threads username and get your interaction circle — a shareable card of who engages with you most.",
   openGraph: {
     siteName: "ThreadStalk",
     type: "website",

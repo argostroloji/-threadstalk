@@ -16,19 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  const examples = ["zuck", "mosseri", "netflix", "nasa", "spotify"].flatMap(
-    (h) => [
-      {
-        url: `${siteUrl}/stalkers/${h}`,
-        changeFrequency: "daily" as const,
-        priority: 0.7,
-      },
-      {
-        url: `${siteUrl}/personality/${h}`,
-        changeFrequency: "daily" as const,
-        priority: 0.7,
-      },
-    ],
+  const examples = ["zuck", "mosseri", "netflix", "nasa", "spotify"].map(
+    (h) => ({
+      url: `${siteUrl}/stalkers/${h}`,
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    }),
   );
 
   return [...staticPages, ...examples];

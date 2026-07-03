@@ -3,12 +3,10 @@ const ITEMS: { q: string; a: React.ReactNode }[] = [
     q: "What does ThreadStalk do?",
     a: (
       <>
-        ThreadStalk has two features. <strong>Who&apos;s Stalking You?</strong>{" "}
-        builds a visual &quot;interaction circle&quot; of the accounts that
-        publicly engage with you the most on Threads. The{" "}
-        <strong>Personality Test</strong> reads your recent posts with AI and
-        assigns you one of 10 fun archetypes. Both results come as a shareable
-        image.
+        ThreadStalk builds a visual &quot;interaction circle&quot; of the
+        accounts that publicly engage with you the most on Threads — the people
+        who reply to, mention and quote you. The result comes as a shareable
+        image you can post to your story.
       </>
     ),
   },
@@ -20,8 +18,7 @@ const ITEMS: { q: string; a: React.ReactNode }[] = [
         public interactions — replies to your posts, and public mentions and
         quotes of you — and score them (a mention is worth 3 points, a quote 2,
         a reply 1, with recent interactions weighted higher). The top accounts
-        are drawn as your circle. For the personality test, the text of your
-        recent posts is analyzed by AI to find your archetype.
+        are drawn as your circle.
       </>
     ),
   },
