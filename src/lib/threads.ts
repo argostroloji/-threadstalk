@@ -135,6 +135,35 @@ export async function getUserPosts(handle: string): Promise<ThreadsPost[]> {
   return posts.map(parsePost).filter((p): p is ThreadsPost => p !== null);
 }
 
+/**
+ * Tek kredide postlar + profil: posts yanıtındaki user nesnesi avatar,
+ * doğrulama ve gizlilik bilgisini zaten taşıyor — ayrı /profile çağrısına
+ * gerek yok (kredi tasarrufu).
+ */
+export async function getPostsAndProfile(handle: string): Promise<{
+  profile: ThreadsProfile | null;
+  posts: ThreadsPost[];
+}> {
+  if (isMock()) {
+    return { profile: { ...MOCK_PROFILE, username: handle }, posts: MOCK_POSTS };
+  }
+  const data = await scGet("/user/posts", { handle });
+  const raw: any[] = data?.posts ?? [];
+  const posts = raw.map(parsePost).filter((p): p is ThreadsPost => p !== null);
+
+  const u = raw.find((p: any) => p?.user?.username)?.user;
+  const profile: ThreadsProfile | null = u
+    ? {
+        username: u.username,
+        profilePicUrl: u.profile_pic_url,
+        isVerified: u.is_verified,
+        isPrivate: u.text_post_app_is_private,
+      }
+    : null;
+
+  return { profile, posts };
+}
+
 export async function getPostReplies(postUrl: string): Promise<ThreadsReply[]> {
   if (isMock()) return MOCK_REPLIES;
   try {
