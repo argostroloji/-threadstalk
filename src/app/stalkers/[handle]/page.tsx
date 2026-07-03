@@ -122,7 +122,7 @@ export default async function StalkersPage({
 
       <AdSlot slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_RESULT} />
 
-      <TrendingHandles mode="stalkers" exclude={handle} />
+      <TrendingHandles mode="stalkers" exclude={handle} live />
     </div>
   );
 }

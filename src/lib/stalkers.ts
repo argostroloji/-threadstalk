@@ -1,5 +1,6 @@
 import { cacheGet, cacheSet } from "./cache";
 import { scoreInteractions } from "./score";
+import { logSearch } from "./searchlog";
 import { getPostReplies, getPostsAndProfile } from "./threads";
 import { DataError, Interaction, StalkerResult } from "./types";
 
@@ -16,7 +17,11 @@ const WINDOW_S = 90 * 24 * 60 * 60; // 90 gün
 
 export async function getStalkerResult(handle: string): Promise<StalkerResult> {
   const cacheKey = `stalkers:v4:${handle}`;
-  const cached = await cacheGet<StalkerResult>(cacheKey);
+  // Arama günlüğü cache kontrolüyle paralel — kullanıcıya ek bekleme yok.
+  const [cached] = await Promise.all([
+    cacheGet<StalkerResult>(cacheKey),
+    logSearch(handle),
+  ]);
   if (cached) return cached;
 
   const { profile, posts: allPosts } = await getPostsAndProfile(handle);

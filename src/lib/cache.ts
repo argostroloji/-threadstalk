@@ -18,7 +18,7 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 const TTL_MS = 24 * 60 * 60 * 1000;
 
 let supabase: SupabaseClient | null = null;
-function getSupabase(): SupabaseClient | null {
+export function getSupabase(): SupabaseClient | null {
   if (supabase) return supabase;
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
