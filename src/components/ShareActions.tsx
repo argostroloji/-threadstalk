@@ -27,6 +27,19 @@ export default function ShareActions({
       scale: 2,
       useCORS: true,
       logging: false,
+      // html2canvas "background-clip: text" gradyanını render edemez ve metni
+      // pembe dolu kutuya çevirir. Yalnızca ekran görüntüsü kopyasında bu
+      // metinleri düz renge çeviriyoruz; canlı sayfa gradyanı korur.
+      onclone: (doc) => {
+        doc.querySelectorAll<HTMLElement>(".bg-clip-text").forEach((node) => {
+          node.style.backgroundImage = "none";
+          node.style.background = "none";
+          node.style.webkitBackgroundClip = "border-box";
+          (node.style as unknown as { backgroundClip: string }).backgroundClip =
+            "border-box";
+          node.style.color = "#e879f9";
+        });
+      },
     });
     return await new Promise((resolve) =>
       canvas.toBlob((b) => resolve(b), "image/png"),
