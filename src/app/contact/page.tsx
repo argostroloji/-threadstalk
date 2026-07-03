@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
 };
 
-const CONTACT_EMAIL = "argostroloji@gmail.com";
+const CONTACT_EMAIL = "info@threadstalker.xyz";
 
 export default function ContactPage() {
   return (
