@@ -1,6 +1,6 @@
 /**
  * Paylaşılan görselin altındaki belirgin site imzası.
- * NEXT_PUBLIC_SITE_URL'den domaini türetir; localhost/boşsa threadstalk.xyz.
+ * NEXT_PUBLIC_SITE_URL'den domaini türetir; localhost/boşsa threadstalker.xyz.
  */
 function brandDomain(): string {
   try {
@@ -9,7 +9,7 @@ function brandDomain(): string {
   } catch {
     // geçersiz URL → fallback
   }
-  return "threadstalk.xyz";
+  return "threadstalker.xyz";
 }
 
 export default function CardBrand() {
