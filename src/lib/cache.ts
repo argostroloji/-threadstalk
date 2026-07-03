@@ -23,7 +23,16 @@ function getSupabase(): SupabaseClient | null {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return null;
-  supabase = createClient(url, key, { auth: { persistSession: false } });
+  supabase = createClient(url, key, {
+    auth: { persistSession: false },
+    // Next.js App Router, fetch GET isteklerini Data Cache'inde önbelleğe alır;
+    // bu, supabase-js SELECT'lerinin ilk (boş) sonucunu dondurup cache okumasını
+    // kalıcı null yapar. no-store ile her sorgu canlı DB'ye gider.
+    global: {
+      fetch: (input, init) =>
+        fetch(input as RequestInfo, { ...init, cache: "no-store" }),
+    },
+  });
   return supabase;
 }
 
