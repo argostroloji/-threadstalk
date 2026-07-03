@@ -6,18 +6,35 @@ import {
   getUserPosts,
   searchMentions,
 } from "./threads";
-import { DataError, Interaction, StalkerResult } from "./types";
+import {
+  DataError,
+  Interaction,
+  StalkerResult,
+  ThreadsPost,
+} from "./types";
 
-/** Yanıtları taranacak maksimum post sayısı (API kredisi kontrolü) */
-const MAX_POSTS_TO_SCAN = 8;
+/**
+ * Yanıtları taranacak maksimum post sayısı.
+ * Her post 1 kredi + 1 canlı scrape (yavaş) demek; her post ~20 yanıt
+ * getirdiği için 3 post, 24 kişilik çember için yeterli — daha az straggler,
+ * daha düşük maliyet.
+ */
+const MAX_POSTS_TO_SCAN = 3;
 const WINDOW_S = 90 * 24 * 60 * 60; // 90 gün
 
 export async function getStalkerResult(handle: string): Promise<StalkerResult> {
-  const cacheKey = `stalkers:v2:${handle}`;
+  const cacheKey = `stalkers:v3:${handle}`;
   const cached = await cacheGet<StalkerResult>(cacheKey);
   if (cached) return cached;
 
-  const profile = await getProfile(handle);
+  // Üç bağımsız çağrıyı da t=0'da başlat. Yalnızca yanıt taramaları postlara
+  // bağımlı; profil (gating) ve mention araması onlarla paralel akar, kritik
+  // yola eklenmez. (searchMentions kendi içinde hata yutar, reject etmez.)
+  const profileP = getProfile(handle);
+  const postsP = getUserPosts(handle).catch(() => [] as ThreadsPost[]);
+  const mentionsP = searchMentions(handle);
+
+  const profile = await profileP;
   if (!profile) {
     throw new DataError("This username wasn't found on Threads.", "not_found");
   }
@@ -31,8 +48,7 @@ export async function getStalkerResult(handle: string): Promise<StalkerResult> {
   const now = Math.floor(Date.now() / 1000);
   const cutoff = now - WINDOW_S;
 
-  // 1) Kullanıcının son postları → yanıt verenler (reply etkileşimi)
-  const posts = (await getUserPosts(handle))
+  const posts = (await postsP)
     .filter((p) => p.takenAt >= cutoff)
     .sort((a, b) => b.takenAt - a.takenAt);
 
@@ -57,8 +73,8 @@ export async function getStalkerResult(handle: string): Promise<StalkerResult> {
     }),
   );
 
-  // 2) @handle mention araması → mention / quote etkileşimleri
-  const mentions = await searchMentions(handle);
+  // t=0'da başlayan mention araması bu noktada büyük olasılıkla çoktan bitti.
+  const mentions = await mentionsP;
   const mentionInteractions: Interaction[] = mentions
     .filter((m) => m.takenAt === 0 || m.takenAt >= cutoff)
     .map((m) => ({

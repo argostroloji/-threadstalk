@@ -18,7 +18,7 @@ import { MOCK_PROFILE, MOCK_POSTS, MOCK_REPLIES, MOCK_MENTIONS } from "./mock";
  */
 
 const BASE = "https://api.scrapecreators.com/v1/threads";
-const TIMEOUT_MS = 20_000;
+const TIMEOUT_MS = 15_000;
 
 function isMock(): boolean {
   return process.env.MOCK_DATA === "true";
@@ -129,7 +129,8 @@ function parsePost(p: any): ThreadsPost | null {
 
 export async function getUserPosts(handle: string): Promise<ThreadsPost[]> {
   if (isMock()) return MOCK_POSTS;
-  const data = await scGet("/user/posts", { handle, trim: "true" });
+  // trim=true, text_post_app_info'yu (direct_reply_count) siliyor — kullanma.
+  const data = await scGet("/user/posts", { handle });
   const posts: any[] = data?.posts ?? [];
   return posts.map(parsePost).filter((p): p is ThreadsPost => p !== null);
 }
@@ -137,7 +138,7 @@ export async function getUserPosts(handle: string): Promise<ThreadsPost[]> {
 export async function getPostReplies(postUrl: string): Promise<ThreadsReply[]> {
   if (isMock()) return MOCK_REPLIES;
   try {
-    const data = await scGet("/post", { url: postUrl, trim: "true" });
+    const data = await scGet("/post", { url: postUrl });
     const comments: any[] = data?.comments ?? data?.replies ?? [];
     return comments
       .map((c: any): ThreadsReply | null => {
@@ -174,10 +175,11 @@ export async function searchMentions(handle: string): Promise<MentionPost[]> {
   const fmt = (d: Date) => d.toISOString().slice(0, 10);
   try {
     const data = await scGet("/search", {
-      query: `@${handle}`,
+      // Arama motoru "@" ile 0 sonuç döndürür — düz handle ile arayıp
+      // aşağıda metinde gerçek @handle geçenleri filtreliyoruz.
+      query: handle,
       start_date: fmt(start),
       end_date: fmt(end),
-      trim: "true",
     });
     const posts: any[] = data?.posts ?? [];
     return posts
