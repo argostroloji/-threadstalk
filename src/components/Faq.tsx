@@ -1,9 +1,9 @@
 const ITEMS: { q: string; a: React.ReactNode }[] = [
   {
-    q: "What does ThreadStalk do?",
+    q: "What does ThreadStalker do?",
     a: (
       <>
-        ThreadStalk builds a visual &quot;interaction circle&quot; of the
+        ThreadStalker builds a visual &quot;interaction circle&quot; of the
         accounts that publicly engage with you the most on Threads — the people
         who reply to, mention and quote you. The result comes as a shareable
         image you can post to your story.
@@ -29,7 +29,7 @@ const ITEMS: { q: string; a: React.ReactNode }[] = [
         No — and neither can any other tool, honestly. Threads and Instagram{" "}
         <strong>never share profile-visit data with anyone</strong>. Any site
         claiming to show your &quot;profile viewers&quot; is making it up.
-        ThreadStalk only measures <strong>real, public interactions</strong>{" "}
+        ThreadStalker only measures <strong>real, public interactions</strong>{" "}
         (mentions, quotes, replies) — never guessed or invented names.
       </>
     ),

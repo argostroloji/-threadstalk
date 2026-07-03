@@ -43,7 +43,7 @@ export async function GET(request: Request) {
           </div>
         ) : null}
         <div style={{ display: "flex", fontSize: 28, color: "#a1a1aa" }}>
-          threadstalk — tap to see the result
+          threadstalker — tap to see the result
         </div>
       </div>
     ),

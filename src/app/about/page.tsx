@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "What ThreadStalk is, how it works, and why it's honest.",
+  description: "What ThreadStalker is, how it works, and why it's honest.",
   alternates: { canonical: "/about" },
 };
 
@@ -12,7 +12,7 @@ export default function AboutPage() {
     <article className="mx-auto max-w-2xl space-y-6 text-sm leading-relaxed text-zinc-300">
       <h1 className="text-3xl font-extrabold text-zinc-100">About</h1>
       <p>
-        ThreadStalk is a just-for-fun analytics tool for Threads users. It
+        ThreadStalker is a just-for-fun analytics tool for Threads users. It
         scores the accounts that engage with you the most based on public
         interaction data and draws them as your &quot;interaction
         circle&quot; (&quot;Who&apos;s Stalking You?&quot;).
@@ -22,7 +22,7 @@ export default function AboutPage() {
         Almost every tool on the internet claiming to show &quot;who viewed
         your profile&quot; shows made-up results — because Threads (and
         Instagram) <strong>never share profile-visit data with anyone</strong>.
-        We say this openly: ThreadStalk doesn&apos;t measure profile visits, it
+        We say this openly: ThreadStalker doesn&apos;t measure profile visits, it
         measures{" "}
         <strong>real, verifiable public interactions</strong> (mentions,
         quotes, replies). That disclaimer is always part of our result cards.
@@ -50,7 +50,7 @@ export default function AboutPage() {
         .
       </p>
       <p className="text-xs text-zinc-500">
-        ThreadStalk is not affiliated with Meta Platforms, Inc.
+        ThreadStalker is not affiliated with Meta Platforms, Inc.
       </p>
     </article>
   );

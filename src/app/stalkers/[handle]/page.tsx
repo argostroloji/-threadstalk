@@ -116,7 +116,7 @@ export default async function StalkersPage({
         <ShareActions
           cardId="stalker-card"
           shareText={`My Threads interaction circle 👀 Check yours:`}
-          fileName={`threadstalk-${handle}`}
+          fileName={`threadstalker-${handle}`}
         />
       </div>
 

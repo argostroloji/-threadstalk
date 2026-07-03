@@ -8,13 +8,13 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "ThreadStalk — Who's Stalking You on Threads?",
-    template: "%s · ThreadStalk",
+    default: "ThreadStalker — Who's Stalking You on Threads?",
+    template: "%s · ThreadStalker",
   },
   description:
     "Enter your Threads username and get your interaction circle — a shareable card of who engages with you most.",
   openGraph: {
-    siteName: "ThreadStalk",
+    siteName: "ThreadStalker",
     type: "website",
     locale: "en_US",
     images: ["/api/og"],
@@ -32,7 +32,7 @@ export default function RootLayout({
         <header className="border-b border-white/5">
           <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-4">
             <Link href="/" className="text-xl font-bold tracking-tight">
-              👁️ Thread<span className="text-neon">Stalk</span>
+              👁️ Thread<span className="text-neon">Stalker</span>
             </Link>
             <nav className="flex gap-4 text-sm text-zinc-400">
               <Link href="/about" className="hover:text-zinc-100">
@@ -52,7 +52,7 @@ export default function RootLayout({
         <footer className="border-t border-white/5 py-8 text-center text-xs text-zinc-500">
           <div className="mx-auto max-w-4xl space-y-3 px-4">
             <p>
-              ThreadStalk is not affiliated with or endorsed by Meta Platforms,
+              ThreadStalker is not affiliated with or endorsed by Meta Platforms,
               Inc. The name &quot;Threads&quot; is used only as text to describe
               the service. Only publicly available data is processed.
             </p>
@@ -67,7 +67,7 @@ export default function RootLayout({
                 Contact
               </Link>
             </p>
-            <p>© {new Date().getFullYear()} ThreadStalk</p>
+            <p>© {new Date().getFullYear()} ThreadStalker</p>
           </div>
         </footer>
       </body>

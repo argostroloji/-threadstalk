@@ -68,7 +68,7 @@ export default async function PersonalityPage({
       {/* Shareable card */}
       <ColorCard cardId="personality-card">
         <p className="mb-1 text-center text-xs uppercase tracking-widest text-zinc-400">
-          threadstalk · threads personality test
+          threadstalker · threads personality test
         </p>
         <p className="mb-4 text-center text-sm text-zinc-300">@{handle}</p>
 
@@ -111,7 +111,7 @@ export default async function PersonalityPage({
         <ShareActions
           cardId="personality-card"
           shareText={`My Threads personality: ${result.archetype} 🔮 What's yours?`}
-          fileName={`threadstalk-personality-${handle}`}
+          fileName={`threadstalker-personality-${handle}`}
         />
         <p className="text-center text-sm text-zinc-400">
           <Link href={`/stalkers/${handle}`} className="text-neon underline">

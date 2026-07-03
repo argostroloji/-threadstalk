@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "What data ThreadStalk processes, for what purpose, and for how long.",
+    "What data ThreadStalker processes, for what purpose, and for how long.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -17,7 +17,7 @@ export default function PrivacyPage() {
             What data do we process?
           </h2>
           <p>
-            ThreadStalk only processes <strong>publicly available</strong>{" "}
+            ThreadStalker only processes <strong>publicly available</strong>{" "}
             Threads data: the queried username&apos;s public profile, their
             public posts, and the usernames of accounts that publicly reply to
             or publicly mention that user. Private accounts are not analyzed.
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
             Trademark note
           </h2>
           <p>
-            ThreadStalk is not affiliated with or endorsed by Meta Platforms,
+            ThreadStalker is not affiliated with or endorsed by Meta Platforms,
             Inc. or Threads. The name &quot;Threads&quot; appears only as text
             to describe the service.
           </p>

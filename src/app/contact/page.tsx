@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with the ThreadStalk team: questions, feedback and data removal requests.",
+    "Get in touch with the ThreadStalker team: questions, feedback and data removal requests.",
   alternates: { canonical: "/contact" },
 };
 
@@ -28,7 +28,7 @@ export default function ContactPage() {
       <div className="rounded-2xl border border-white/10 bg-panel p-5">
         <h2 className="mb-2 font-bold text-zinc-100">Data removal requests</h2>
         <p>
-          If you want your username removed from ThreadStalk&apos;s cache
+          If you want your username removed from ThreadStalker&apos;s cache
           immediately, put &quot;Data removal&quot; in the subject line and
           include your Threads username. We&apos;ll process the request within
           7 days and get back to you.
